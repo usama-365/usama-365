@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 import "@/app/globals.css";
 import { ThemeProvider } from "@/providers/theme-provider";
 import ThemeToggleButton from "@/components/ui/theme-toggle-button";
-import Header from "@/components/header/header";
+import Navbar from "@/components/navbar/navbar";
 
 export const fontSans = FontSans({
   subsets: ["latin"],
@@ -38,7 +38,7 @@ export default function RootLayout({
           // disableTransitionOnChange
         >
           <ThemeToggleButton />
-          <Header />
+          <Navbar />
           {children}
         </ThemeProvider>
       </body>

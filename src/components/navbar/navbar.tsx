@@ -43,7 +43,7 @@ const NAV_LINKS = [
   },
 ] as const;
 
-export default function Header() {
+export default function Navbar() {
   return (
     <NavigationMenu className="fixed left-0 top-0 w-full max-w-full border-b p-2 shadow backdrop-blur sm:left-1/2 sm:top-5 sm:max-w-max sm:-translate-x-1/2 sm:rounded-lg sm:border">
       <NavigationMenuList className="flex-wrap sm:flex-nowrap">
