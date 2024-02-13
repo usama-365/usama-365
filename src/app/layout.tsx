@@ -3,6 +3,8 @@ import { Inter as FontSans } from "next/font/google";
 
 import { cn } from "@/lib/utils";
 import "@/app/globals.css";
+import { ThemeProvider } from "@/providers/theme-provider";
+import ThemeToggleButton from "@/components/ui/theme-toggle-button";
 
 export const fontSans = FontSans({
   subsets: ["latin"],
@@ -28,7 +30,15 @@ export default function RootLayout({
           fontSans.variable,
         )}
       >
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <ThemeToggleButton />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
