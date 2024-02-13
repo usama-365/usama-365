@@ -1,3 +1,5 @@
+import { Button } from "@/components/ui/button";
+
 export default function Home() {
-  return <p className="text-gray-500">Hello</p>;
+  return <Button>Sample Button</Button>;
 }
