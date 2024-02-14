@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 
 import { cn } from "@/lib/utils";
 
-export function P({
+export default function P({
   className,
   children,
 }: {
