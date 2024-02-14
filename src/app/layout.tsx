@@ -7,7 +7,7 @@ import { ThemeProvider } from "@/providers/theme-provider";
 import ThemeToggleButton from "@/components/ui/theme-toggle-button";
 import Navbar from "@/components/navbar/navbar";
 
-export const fontSans = FontSans({
+const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
 });
