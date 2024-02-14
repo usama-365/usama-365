@@ -8,7 +8,7 @@ import ThemeToggleButton from "@/components/ui/theme-toggle-button";
 import Navbar from "@/components/navbar/navbar";
 import Footer from "@/app/(sections)/footer";
 
-export const fontSans = FontSans({
+const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
 });
