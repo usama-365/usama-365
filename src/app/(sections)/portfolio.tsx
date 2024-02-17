@@ -30,25 +30,23 @@ export default function Portfolio() {
           {PORTFOLIO.map(
             ({ title, description, imageUrl, technologies, type, url }) => (
               <CarouselItem
-                className="basis-full md:basis-1/2 lg:basis-1/3 xl:basis-1/4"
+                className="basis-full md:basis-1/2 xl:basis-1/3"
                 key={title}
               >
                 <a target="_blank" href={url}>
-                  <Card className="group h-full overflow-hidden">
+                  <Card className="group relative h-full overflow-hidden">
                     <CardHeader>
                       <CardTitle>{title}</CardTitle>
                       <CardDescription>{type}</CardDescription>
                     </CardHeader>
-                    <CardContent className="pr-0">
-                      <div className="relative h-52 origin-right overflow-hidden rounded-l-lg shadow transition-all duration-300 after:absolute after:left-0 after:top-0 after:z-10 after:h-full after:w-full after:bg-primary/50 after:transition group-hover:scale-110 group-hover:rounded-none after:group-hover:bg-primary/0">
-                        <Image
-                          className="h-full w-auto object-cover object-left grayscale transition-[filter] group-hover:grayscale-0"
-                          src={imageUrl}
-                          alt={title}
-                          quality={100}
-                          draggable={false}
-                        />
-                      </div>
+                    <CardContent>
+                      <Image
+                        className="absolute left-full top-0 h-full w-full rounded-sm object-cover transition-all group-hover:left-0"
+                        src={imageUrl}
+                        alt={title}
+                        quality={100}
+                        draggable={false}
+                      />
                       <P className="">{description}</P>
                     </CardContent>
                     <CardFooter className="flex-wrap gap-2">

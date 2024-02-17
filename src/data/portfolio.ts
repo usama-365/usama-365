@@ -48,6 +48,30 @@ const PORTFOLIO = [
     imageUrl: omnifood,
     url: "https://usama-365.github.io/omnifood/",
   },
+  {
+    title: "Omnifood",
+    type: PROJECT_TYPES.landingPage,
+    description: "A modern E-commerce store",
+    technologies: ["HTML", "CSS", "Javascript"],
+    imageUrl: omnifood,
+    url: "https://usama-365.github.io/omnifood/",
+  },
+  {
+    title: "Omnifood",
+    type: PROJECT_TYPES.landingPage,
+    description: "A modern E-commerce store",
+    technologies: ["HTML", "CSS", "Javascript"],
+    imageUrl: omnifood,
+    url: "https://usama-365.github.io/omnifood/",
+  },
+  {
+    title: "Omnifood",
+    type: PROJECT_TYPES.landingPage,
+    description: "A modern E-commerce store",
+    technologies: ["HTML", "CSS", "Javascript"],
+    imageUrl: omnifood,
+    url: "https://usama-365.github.io/omnifood/",
+  },
 ];
 
 export default PORTFOLIO;
