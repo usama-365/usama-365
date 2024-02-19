@@ -1,7 +1,7 @@
+import Image from "next/image";
+
 import H2 from "@/components/typography/h2";
-import Muted from "@/components/typography/muted";
 import P from "@/components/typography/p";
-import Small from "@/components/typography/small";
 import { Badge } from "@/components/ui/badge";
 import {
   Card,
@@ -19,7 +19,6 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import PORTFOLIO from "@/data/portfolio";
-import Image from "next/image";
 
 export default function Portfolio() {
   return (
@@ -41,13 +40,12 @@ export default function Portfolio() {
                     </CardHeader>
                     <CardContent>
                       <Image
-                        className="absolute left-full top-0 h-full w-full rounded-sm object-cover transition-all group-hover:left-0"
+                        className="absolute left-full top-0 h-full w-full rounded-sm object-cover object-left-top transition-all group-hover:left-0"
                         src={imageUrl}
                         alt={title}
                         quality={100}
-                        draggable={false}
                       />
-                      <P className="">{description}</P>
+                      <P>{description}</P>
                     </CardContent>
                     <CardFooter className="flex-wrap gap-2">
                       {technologies.map((technology) => (
@@ -60,6 +58,7 @@ export default function Portfolio() {
             ),
           )}
         </CarouselContent>
+
         <CarouselPrevious />
         <CarouselNext />
       </Carousel>
