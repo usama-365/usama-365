@@ -1,7 +1,8 @@
 import Header from "@/app/(sections)/header";
-import About from "./(sections)/about";
-import Skills from "./(sections)/skills";
-import Portfolio from "./(sections)/portfolio";
+import About from "@/app/(sections)/about";
+import Skills from "@/app/(sections)/skills";
+import Portfolio from "@/app/(sections)/portfolio";
+import Services from "@/app/(sections)/services";
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
       <About />
       <Portfolio />
       <Skills />
+      <Services />
     </main>
   );
 }
