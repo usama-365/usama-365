@@ -1,7 +1,6 @@
 import Image from "next/image";
 
 import H2 from "@/components/typography/h2";
-import P from "@/components/typography/p";
 import { Badge } from "@/components/ui/badge";
 import {
   Card,
@@ -11,57 +10,87 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselNext,
-  CarouselItem,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
-import PORTFOLIO from "@/data/portfolio";
+import PORTFOLIO, { type PortfolioItem } from "@/data/portfolio";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import { cn } from "@/lib/utils";
 
 export default function Portfolio() {
   return (
-    <section className="mx-auto px-4 py-12">
+    <section id="portfolio" className="mx-auto max-w-7xl px-4 pt-28">
       <H2 className="mx-auto mb-8 w-max text-center">Portfolio</H2>
-      <Carousel className="mx-auto max-w-[80%]">
-        <CarouselContent>
-          {PORTFOLIO.map(
-            ({ title, description, imageUrl, technologies, type, url }) => (
-              <CarouselItem
-                className="basis-full md:basis-1/2 xl:basis-1/3"
-                key={title}
-              >
-                <a target="_blank" href={url}>
-                  <Card className="group relative h-full overflow-hidden">
-                    <CardHeader>
-                      <CardTitle>{title}</CardTitle>
-                      <CardDescription>{type}</CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <Image
-                        className="absolute left-full top-0 h-full w-full rounded-sm object-cover object-left-top transition-all group-hover:left-0"
-                        src={imageUrl}
-                        alt={title}
-                        quality={100}
-                      />
-                      <P>{description}</P>
-                    </CardContent>
-                    <CardFooter className="flex-wrap gap-2">
-                      {technologies.map((technology) => (
-                        <Badge key={technology}>{technology}</Badge>
-                      ))}
-                    </CardFooter>
-                  </Card>
-                </a>
-              </CarouselItem>
-            ),
-          )}
-        </CarouselContent>
 
-        <CarouselPrevious />
-        <CarouselNext />
-      </Carousel>
+      <Tabs
+        className="grid max-w-7xl grid-cols-1 gap-x-8 gap-y-4 sm:grid-cols-[max-content_minmax(0,1fr)]"
+        defaultValue={Object.keys(PORTFOLIO)[0]}
+      >
+        <TabsList className="h-min flex-col items-start justify-start border p-3 shadow">
+          {Object.keys(PORTFOLIO).map((projectType) => (
+            <TabsTrigger
+              className="w-full justify-start"
+              key={projectType}
+              value={projectType}
+            >
+              {projectType}
+            </TabsTrigger>
+          ))}
+        </TabsList>
+
+        <div className="overflow-hidden rounded-lg border bg-muted pt-4">
+          <ScrollArea className="pb-6">
+            <ScrollBar orientation="horizontal" className="" />
+            {Object.keys(PORTFOLIO).map((projectType) => (
+              <TabsContent
+                className="m-0 flex w-max "
+                key={projectType}
+                value={projectType}
+              >
+                {(PORTFOLIO[projectType] as PortfolioItem[]).map(
+                  (portfolioItem, i) => (
+                    <PortfolioCard
+                      key={portfolioItem.title}
+                      portfolioItem={portfolioItem}
+                      isLastCard={i === PORTFOLIO[projectType].length - 1}
+                    />
+                  ),
+                )}
+              </TabsContent>
+            ))}
+          </ScrollArea>
+        </div>
+      </Tabs>
     </section>
+  );
+}
+
+function PortfolioCard({
+  portfolioItem: { url, description, imageUrl, technologies, title },
+  isLastCard = false,
+}: {
+  portfolioItem: PortfolioItem;
+  isLastCard: boolean;
+}) {
+  return (
+    <a className="" target="_blank" href={url}>
+      <Card
+        className={cn(
+          "ml-4 max-w-[23rem] transition-colors hover:border-primary",
+          isLastCard && "mr-4",
+        )}
+      >
+        <CardHeader>
+          <CardTitle>{title}</CardTitle>
+          <CardDescription>{description}</CardDescription>
+        </CardHeader>
+        <CardContent className="mx-0 px-0">
+          <Image priority={true} src={imageUrl} alt={title} quality={100} />
+        </CardContent>
+        <CardFooter className="flex-wrap gap-2">
+          {technologies.map((technology) => (
+            <Badge key={technology}>{technology}</Badge>
+          ))}
+        </CardFooter>
+      </Card>
+    </a>
   );
 }

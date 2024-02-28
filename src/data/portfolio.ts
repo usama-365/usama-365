@@ -14,232 +14,235 @@ import wishbux from "@/../public/portfolio/wishbux.png";
 import natours from "@/../public/portfolio/natours.png";
 import natoursApp from "@/../public/portfolio/natours-app.png";
 
-enum PROJECT_TYPES {
-  LANDING_PAGE = "Landing Page",
-  WEBSITE = "Website",
-  WEB_APP = "Web Application",
-  SPA = "Single Page Application (SPA)",
-  REST_API = "REST API",
-}
+const PROJECT_TYPES = {
+  LANDING_PAGE: "Landing Page",
+  WEBSITE: "Website",
+  WEB_APP: "Web Application",
+  SPA: "Single Page Application (SPA)",
+} as const;
 
-type PortfolioItem = {
+export type PortfolioItem = {
   title: string;
   description: string;
-  type: PROJECT_TYPES;
   technologies: string[];
   imageUrl: StaticImageData;
   url: string;
 };
 
-let PORTFOLIO: PortfolioItem[] = [
-  {
-    title: "Antheia",
-    description: "A synthetic biology company",
-    type: PROJECT_TYPES.WEBSITE,
-    technologies: [
-      "PHP",
-      "Wordpress",
-      "Greenhouse",
-      "jQuery",
-      "MySQL",
-      "GSAP",
-      "Swiper",
-      "LottieFiles",
-    ],
-    imageUrl: antheia,
-    url: "https://antheia.bio/",
-  },
-  {
-    title: "Wishbux",
-    type: PROJECT_TYPES.LANDING_PAGE,
-    description: "Turn your wishes into cash!",
-    technologies: [
-      "React",
-      "NextJS",
-      "NodeJS",
-      "Tailwind CSS",
-      "Vercel",
-      "HTML",
-      "Typescript",
-    ],
-    imageUrl: wishbux,
-    url: "https://www.wishbux.com/",
-  },
-  {
-    title: "Triform",
-    description: "Unleashing AI Potential",
-    type: PROJECT_TYPES.WEB_APP,
-    technologies: [
-      "Laravel",
-      "PHP",
-      "Livewire",
-      "Alpine",
-      "Ace",
-      "Lodash",
-      "Axios",
-    ],
-    imageUrl: triform,
-    url: "https://triform.movs.ai/",
-  },
-  {
-    title: "Forkify",
-    description: "Search over 1,000,000 recipes",
-    type: PROJECT_TYPES.SPA,
-    technologies: [
-      "HTML",
-      "CSS",
-      "Javascript",
-      "Parcel",
-      "Fracty",
-      "CoreJS",
-      "Regenerator Runtime",
-    ],
-    imageUrl: forkify,
-    url: "https://usama-365-forkify.vercel.app",
-  },
+type Portfolios = {
+  [key in (typeof PROJECT_TYPES)[keyof typeof PROJECT_TYPES]]: PortfolioItem[];
+};
 
-  {
-    title: "Allonia",
-    description: "Transformative in nature",
-    type: PROJECT_TYPES.WEBSITE,
-    technologies: [
-      "GSAP",
-      "PHP",
-      "jQuery",
-      "Elementor",
-      "MySQL",
-      "Swiper",
-      "GSAP",
-      "Hubspot",
-    ],
-    imageUrl: allonia,
-    url: "https://allonnia.com/",
-  },
-  {
-    title: "Natours",
-    type: PROJECT_TYPES.WEB_APP,
-    description: "Book your tours now!",
-    technologies: [
-      "NodeJS",
-      "ExpressJS",
-      "Stripe",
-      "Parcel",
-      "Vercel",
-      "HTML",
-      "CSS",
-    ],
-    imageUrl: natoursApp,
-    url: "https://usama-365-natours.vercel.app/",
-  },
-  {
-    title: "Omnifood",
-    type: PROJECT_TYPES.LANDING_PAGE,
-    description: "Never cook again!",
-    technologies: [
-      "HTML",
-      "CSS",
-      "Javascript",
-      "jQuery",
-      "Isotope",
-      "Github Pages",
-    ],
-    imageUrl: omnifood,
-    url: "https://usama-365.github.io/omnifood/",
-  },
+let PORTFOLIO: Portfolios = {
+  // Landing pages
+  [PROJECT_TYPES.LANDING_PAGE]: [
+    {
+      title: "Wishbux",
+      description: "Turn your wishes into cash!",
+      technologies: [
+        "React",
+        "NextJS",
+        "NodeJS",
+        "Tailwind CSS",
+        "Vercel",
+        "HTML",
+        "Typescript",
+      ],
+      imageUrl: wishbux,
+      url: "https://www.wishbux.com/",
+    },
+    {
+      title: "Bankist",
+      description: "Where banking meets minimalism",
+      technologies: [
+        "HTML",
+        "CSS",
+        "Javascript",
+        "jQuery",
+        "Isotope",
+        "Github Pages",
+      ],
+      imageUrl: bankist,
+      url: "https://usama-365.github.io/bankist-landing-page/",
+    },
+    {
+      title: "Omnifood",
+      description: "Never cook again!",
+      technologies: [
+        "HTML",
+        "CSS",
+        "Javascript",
+        "jQuery",
+        "Isotope",
+        "Github Pages",
+      ],
+      imageUrl: omnifood,
+      url: "https://usama-365.github.io/omnifood/",
+    },
+    {
+      title: "Natours",
+      description: "Exciting tours for adventurous people!",
+      technologies: [
+        "HTML",
+        "CSS",
+        "Javascript",
+        "jQuery",
+        "Isotope",
+        "Github Pages",
+      ],
+      imageUrl: natours,
+      url: "https://usama-365.github.io/natours/",
+    },
+  ],
 
-  {
-    title: "Voy Travel",
-    description: "Unlock the value of travel",
-    type: PROJECT_TYPES.WEBSITE,
-    technologies: [
-      "GSAP",
-      "PHP",
-      "jQuery",
-      "Elementor",
-      "MySQL",
-      "Swiper",
-      "GSAP",
-    ],
-    imageUrl: voytravel,
-    url: "https://www.voytravel.com/",
-  },
-  {
-    title: "Crown Clothing",
-    description: "A modern E-commerce store",
-    type: PROJECT_TYPES.SPA,
-    technologies: [
-      "React",
-      "Redux",
-      "Typescript",
-      "Stripe",
-      "SASS",
-      "Firebase",
-    ],
-    imageUrl: crownClothing,
-    url: "https://usama-365-crown-clothing.vercel.app",
-  },
-  {
-    title: "TrueBrydge",
-    description: "Build relationships, not campaigns",
-    type: PROJECT_TYPES.WEBSITE,
-    technologies: [
-      "GSAP",
-      "PHP",
-      "jQuery",
-      "Wordpress",
-      "MySQL",
-      "Swiper",
-      "GSAP",
-    ],
-    imageUrl: truebrydge,
-    url: "https://truebrydge.com/",
-  },
-  {
-    title: "Bankist",
-    type: PROJECT_TYPES.LANDING_PAGE,
-    description: "Where banking meets minimalism",
-    technologies: [
-      "HTML",
-      "CSS",
-      "Javascript",
-      "jQuery",
-      "Isotope",
-      "Github Pages",
-    ],
-    imageUrl: bankist,
-    url: "https://usama-365.github.io/bankist-landing-page/",
-  },
-  {
-    title: "Retros Gallery",
-    description: "A Vintage design dealer from Bucharest",
-    type: PROJECT_TYPES.WEBSITE,
-    technologies: [
-      "GSAP",
-      "PHP",
-      "jQuery",
-      "Wordpress",
-      "MySQL",
-      "Swiper",
-      "GSAP",
-    ],
-    imageUrl: retrosGallery,
-    url: "https://www.retros-gallery.com/",
-  },
-  {
-    title: "Natours",
-    type: PROJECT_TYPES.LANDING_PAGE,
-    description: "Exciting tours for adventurous people!",
-    technologies: [
-      "HTML",
-      "CSS",
-      "Javascript",
-      "jQuery",
-      "Isotope",
-      "Github Pages",
-    ],
-    imageUrl: natours,
-    url: "https://usama-365.github.io/natours/",
-  },
-];
+  // Website
+  [PROJECT_TYPES.WEBSITE]: [
+    {
+      title: "Antheia",
+      description: "A synthetic biology company",
+      technologies: [
+        "PHP",
+        "Wordpress",
+        "Greenhouse",
+        "jQuery",
+        "MySQL",
+        "GSAP",
+        "Swiper",
+        "LottieFiles",
+      ],
+      imageUrl: antheia,
+      url: "https://antheia.bio/",
+    },
+    {
+      title: "Allonia",
+      description: "Transformative in nature",
+      technologies: [
+        "GSAP",
+        "PHP",
+        "jQuery",
+        "Elementor",
+        "MySQL",
+        "Swiper",
+        "GSAP",
+        "Hubspot",
+      ],
+      imageUrl: allonia,
+      url: "https://allonnia.com/",
+    },
+    {
+      title: "Voy Travel",
+      description: "Unlock the value of travel",
+      technologies: [
+        "GSAP",
+        "PHP",
+        "jQuery",
+        "Elementor",
+        "MySQL",
+        "Swiper",
+        "GSAP",
+      ],
+      imageUrl: voytravel,
+      url: "https://www.voytravel.com/",
+    },
+    {
+      title: "TrueBrydge",
+      description: "Build relationships, not campaigns",
+      technologies: [
+        "GSAP",
+        "PHP",
+        "jQuery",
+        "Wordpress",
+        "MySQL",
+        "Swiper",
+        "GSAP",
+      ],
+      imageUrl: truebrydge,
+      url: "https://truebrydge.com/",
+    },
+    {
+      title: "Retros Gallery",
+      description: "A Vintage design dealer from Bucharest",
+      technologies: [
+        "GSAP",
+        "PHP",
+        "jQuery",
+        "Wordpress",
+        "MySQL",
+        "Swiper",
+        "GSAP",
+      ],
+      imageUrl: retrosGallery,
+      url: "https://www.retros-gallery.com/",
+    },
+  ],
+
+  // Web app
+  [PROJECT_TYPES.WEB_APP]: [
+    {
+      title: "Triform",
+      description: "Unleashing AI Potential",
+      technologies: [
+        "Laravel",
+        "PHP",
+        "Livewire",
+        "Alpine",
+        "Ace",
+        "Lodash",
+        "Axios",
+      ],
+      imageUrl: triform,
+      url: "https://triform.movs.ai/",
+    },
+    {
+      title: "Natours",
+      description: "Book your tours now!",
+      technologies: [
+        "NodeJS",
+        "ExpressJS",
+        "Stripe",
+        "Parcel",
+        "Vercel",
+        "HTML",
+        "CSS",
+      ],
+      imageUrl: natoursApp,
+      url: "https://usama-365-natours.vercel.app/",
+    },
+  ],
+
+  // SPA
+  [PROJECT_TYPES.SPA]: [
+    {
+      title: "Forkify",
+      description: "Search over 1,000,000 recipes",
+      technologies: [
+        "HTML",
+        "CSS",
+        "Javascript",
+        "Parcel",
+        "Fracty",
+        "CoreJS",
+        "Regenerator Runtime",
+      ],
+      imageUrl: forkify,
+      url: "https://usama-365-forkify.vercel.app",
+    },
+
+    {
+      title: "Crown Clothing",
+      description: "A modern E-commerce store",
+      technologies: [
+        "React",
+        "Redux",
+        "Typescript",
+        "Stripe",
+        "SASS",
+        "Firebase",
+      ],
+      imageUrl: crownClothing,
+      url: "https://usama-365-crown-clothing.vercel.app",
+    },
+  ],
+} as const;
 
 export default PORTFOLIO;
