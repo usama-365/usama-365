@@ -1,37 +1,49 @@
+import type { ReactNode } from "react";
+
 import H2 from "@/components/typography/h2";
 import P from "@/components/typography/p";
+import {
+  Accordion,
+  AccordionTrigger,
+  AccordionContent,
+  AccordionItem,
+} from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import SKILLS, { type SkillKeyType } from "@/data/skills";
-import type { ReactNode } from "react";
+import { cn } from "@/lib/utils";
 
 const keys = Object.keys(SKILLS) as SkillKeyType[];
 
 export default function Skills() {
   return (
-    <section className="mb-12 flex flex-col items-center justify-center px-4">
+    <section
+      id="skills"
+      className="mx-auto flex max-w-2xl flex-col items-center justify-center px-4 pt-28"
+    >
       <H2 className="mx-auto mb-8 w-max ">My Skills</H2>
-      <Tabs
-        className="flex flex-col items-center justify-center"
-        defaultValue={keys[0]}
+      <Accordion
+        type="multiple"
+        defaultValue={[keys[0]]}
+        className="w-full rounded-lg border px-4 shadow"
       >
-        <TabsList className="mb-4 flex h-full flex-wrap">
-          {keys.map((key) => (
-            <TabsTrigger className="rounded-lg " value={key} key={key}>
+        {keys.map((key, i) => (
+          <AccordionItem
+            className={cn("p-4", i === keys.length - 1 && "border-b-0")}
+            value={key}
+            key={key}
+          >
+            <AccordionTrigger className="items-center justify-center gap-2">
               {key}
-            </TabsTrigger>
-          ))}
-        </TabsList>
-        {keys.map((key) => (
-          <TabsContent className="max-w-2xl" key={key} value={key}>
-            <div className="flex flex-wrap items-center justify-center gap-2">
+            </AccordionTrigger>
+
+            <AccordionContent className="ites-center flex flex-wrap justify-center gap-2">
               {SKILLS[key].map((skill) => (
-                <SkillBadge key={`${key}/${skill}`}>{skill}</SkillBadge>
+                <SkillBadge key={skill}>{skill}</SkillBadge>
               ))}
-            </div>
-          </TabsContent>
+            </AccordionContent>
+          </AccordionItem>
         ))}
-      </Tabs>
+      </Accordion>
     </section>
   );
 }
