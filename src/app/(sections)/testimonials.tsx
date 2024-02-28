@@ -5,16 +5,33 @@ import P from "@/components/typography/p";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import type { Testimonial } from "@/data/testimonials";
 import TESTIMONIALS from "@/data/testimonials";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 export default function Testimonials() {
   return (
-    <section id="testimonials" className="mx-auto max-w-5xl pt-64">
+    <section id="testimonials" className="mx-auto mb-16 max-w-2xl px-4 pt-28">
       <H2 className="mx-auto mb-8 max-w-max">Testimonials</H2>
-      <div className="grid grid-cols-3 gap-x-4 gap-y-8">
-        {TESTIMONIALS.map((testimonial) => (
-          <Testimonial key={testimonial.review} testimonial={testimonial} />
-        ))}
-      </div>
+
+      <Carousel className="mx-auto">
+        <div className="flex gap-2">
+          <CarouselPrevious className="static" />
+          <CarouselNext className="static" />
+        </div>
+
+        <CarouselContent>
+          {TESTIMONIALS.map((testimonial) => (
+            <CarouselItem key={testimonial.review}>
+              <Testimonial testimonial={testimonial} />
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+      </Carousel>
     </section>
   );
 }
@@ -25,12 +42,18 @@ function Testimonial({
   testimonial: Testimonial;
 }) {
   return (
-    <Blockquote className="mb-2">
-      <Avatar className="mb-2 not-italic">
-        <AvatarImage src={imageUrl} />
-        <AvatarFallback>US</AvatarFallback>
+    <Blockquote>
+      <Avatar className="not-italic">
+        <AvatarImage src={imageUrl?.src} />
+        <AvatarFallback>
+          {/* Initials of the name should be in fallback */}
+          {name
+            .split(" ")
+            .map((name) => name.charAt(0))
+            .join("")}
+        </AvatarFallback>
       </Avatar>
-      <P>{review}</P>
+      <P className="mb-2">&quot;{review}&quot;</P>
       <Muted>- {name}</Muted>
     </Blockquote>
   );
