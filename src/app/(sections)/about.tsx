@@ -3,7 +3,10 @@ import P from "@/components/typography/p";
 
 export default function About() {
   return (
-    <section className="mx-auto mb-12 max-w-2xl px-4 text-justify text-muted-foreground">
+    <section
+      id="about"
+      className="mx-auto max-w-2xl px-4 pt-28 text-justify text-muted-foreground"
+    >
       <H2 className="mx-auto w-max text-foreground">About Me</H2>
       <P>
         I leverage <strong>cutting-edge technology</strong> and a

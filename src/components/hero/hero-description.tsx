@@ -1,25 +1,12 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { motion, type Variants } from "framer-motion";
+import { motion } from "framer-motion";
 
 import H1 from "@/components/typography/h1";
 import H3 from "@/components/typography/h3";
 import { cn } from "@/lib/utils";
-
-const NAME = "Usama";
-const PROFESSION = "Web & Mobile App Developer";
-const YEARS_OF_EXPERIENCE = calculateYearsOfExperience();
-
-const initial = {
-  opacity: 0,
-  y: 100,
-};
-
-const final = {
-  opacity: 1,
-  y: 0,
-};
+import { NAME, PROFESSION, YEARS_OF_EXPERIENCE } from "@/data/personal";
 
 export default function HeroDescription() {
   return (
@@ -54,12 +41,4 @@ function Highlight({
   className?: string;
 }) {
   return <span className={cn("text-foreground", className)}>{children}</span>;
-}
-
-function calculateYearsOfExperience(from = "2020-06-01") {
-  return (
-    Math.round(
-      (Date.now() - Date.parse(from)) / (1000 * 60 * 60 * 24 * 365.25),
-    ) || 0
-  );
 }

@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Skeleton } from "@/components/ui/skeleton";
+import { PROFILE_IMAGE_PATH } from "@/data/personal";
 
 const AnimatedAvatar = motion(Avatar);
-const AnimatedAvatarImage = motion(AvatarImage);
 
 const hoverAnimation = {
   rotate: 1,
@@ -27,11 +27,7 @@ export default function HeroImage() {
       <AvatarFallback>
         <Skeleton className="h-full w-full rounded-full"></Skeleton>
       </AvatarFallback>
-      <AnimatedAvatarImage
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        src={"/header.png"}
-      />
+      <AvatarImage src={`${PROFILE_IMAGE_PATH}`} />
     </AnimatedAvatar>
   );
 }

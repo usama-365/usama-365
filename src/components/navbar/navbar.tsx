@@ -11,53 +11,30 @@ import {
 } from "@/components/ui/navigation-menu";
 import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
-
-const NAV_LINKS = [
-  {
-    name: "Home",
-    path: "#home",
-  },
-  {
-    name: "About",
-    path: "#about",
-  },
-  {
-    name: "Portfolio",
-    path: "#portfolio",
-  },
-  {
-    name: "Skills",
-    path: "#skills",
-  },
-  {
-    name: "Services",
-    path: "#services",
-  },
-  {
-    name: "Testimonials",
-    path: "#testimonials",
-  },
-  {
-    name: "Contact",
-    path: "#contact",
-  },
-] as const;
+import NAV_LINKS from "@/data/nav-links";
+import ContactButton from "../hero/contact-button";
+import { Button } from "../ui/button";
 
 export default function Navbar() {
   return (
-    <NavigationMenu className="fixed left-0 top-0 w-full max-w-full border-b p-2 shadow backdrop-blur sm:left-1/2 sm:top-5 sm:max-w-max sm:-translate-x-1/2 sm:rounded-lg sm:border">
+    <NavigationMenu className="fixed left-0 top-0 w-full max-w-full border-b bg-background/80 p-2 shadow backdrop-blur sm:left-1/2 sm:top-5 sm:max-w-max sm:-translate-x-1/2 sm:rounded-lg sm:border">
       <NavigationMenuList className="flex-wrap sm:flex-nowrap">
         {NAV_LINKS.map(({ name, path }, i) => (
           <NavigationMenuItem className="" key={path}>
             <Link
-              active={i === 0}
-              className="bg-transparent hover:bg-transparent"
+              active={false}
+              className="bg-transparent focus:bg-transparent focus:ring-1 focus:ring-primary active:bg-transparent"
               href={path}
             >
               {name}
             </Link>
           </NavigationMenuItem>
         ))}
+        <NavigationMenuItem>
+          <ContactButton>
+            <Button>Contact</Button>
+          </ContactButton>
+        </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>
   );

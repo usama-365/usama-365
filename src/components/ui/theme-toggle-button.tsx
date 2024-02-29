@@ -15,7 +15,7 @@ export default function ThemeToggleButton() {
     <AnimatedButton
       variant="outline"
       size="icon"
-      className="fixed bottom-5 right-5 text-muted-foreground"
+      className="fixed bottom-8 left-5 text-muted-foreground"
       onClick={() =>
         setTheme(
           theme

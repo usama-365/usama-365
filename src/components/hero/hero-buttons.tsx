@@ -6,6 +6,8 @@ import { motion } from "framer-motion";
 import Large from "@/components/typography/large";
 import { Button } from "@/components/ui/button";
 import ContactButton from "./contact-button";
+import { CV_NAME, GITHUB_URL, LINKED_IN_URL } from "@/data/personal";
+import { toast } from "sonner";
 
 const AnimatedButton = motion(Button);
 
@@ -21,24 +23,14 @@ const hoverAnimationProps = {
   },
 };
 
-export default function HeroButtons({
-  email,
-  cvName,
-  githubUrl,
-  linkedinUrl,
-}: {
-  email: string;
-  cvName: string;
-  githubUrl: string;
-  linkedinUrl: string;
-}) {
+export default function HeroButtons() {
   return (
     <motion.div
       initial={{ y: 100, opacity: 0 }}
       animate={{ y: 0, opacity: 1, transition: { delay: 1 } }}
       className="flex flex-wrap items-center justify-center gap-3"
     >
-      <ContactButton email={email}>
+      <ContactButton>
         <AnimatedButton {...hoverAnimationProps} size="lg">
           <Large className="flex items-center justify-center gap-2">
             Contact Now <FaEnvelope />
@@ -46,7 +38,14 @@ export default function HeroButtons({
         </AnimatedButton>
       </ContactButton>
 
-      <motion.a {...hoverAnimationProps} href={`/${cvName}`} download={cvName}>
+      <motion.a
+        {...hoverAnimationProps}
+        href={`/${CV_NAME}`}
+        download={CV_NAME}
+        onClick={() =>
+          toast("Success!", { description: "CV is being downloaded." })
+        }
+      >
         <Button variant="secondary" size="lg">
           <Large className="flex items-center justify-center gap-2">
             Download CV <FaDownload />
@@ -57,7 +56,7 @@ export default function HeroButtons({
       <motion.a
         className="h-full"
         {...hoverAnimationProps}
-        href={githubUrl}
+        href={GITHUB_URL}
         target="_blank"
       >
         <Button variant="secondary" size="lg">
@@ -67,7 +66,7 @@ export default function HeroButtons({
         </Button>
       </motion.a>
 
-      <motion.a {...hoverAnimationProps} href={linkedinUrl} target="_blank">
+      <motion.a {...hoverAnimationProps} href={LINKED_IN_URL} target="_blank">
         <Button variant="secondary" size="lg">
           <Large className="flex items-center justify-center gap-2">
             <FaLinkedin />
