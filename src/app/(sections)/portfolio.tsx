@@ -10,10 +10,15 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import PORTFOLIO, { type PortfolioItem } from "@/data/portfolio";
+import PORTFOLIO, {
+  type PortfolioItem,
+  type ProjectType,
+} from "@/data/portfolio";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
+
+const PROJECT_TYPES = Object.keys(PORTFOLIO) as ProjectType[];
 
 export default function Portfolio() {
   return (
@@ -25,7 +30,7 @@ export default function Portfolio() {
         defaultValue={Object.keys(PORTFOLIO)[0]}
       >
         <TabsList className="h-min flex-col items-start justify-start border p-3 shadow">
-          {Object.keys(PORTFOLIO).map((projectType) => (
+          {PROJECT_TYPES.map((projectType) => (
             <TabsTrigger
               className="w-full justify-start"
               key={projectType}
@@ -39,21 +44,19 @@ export default function Portfolio() {
         <div className="overflow-hidden rounded-lg border bg-muted pt-4">
           <ScrollArea className="pb-6">
             <ScrollBar orientation="horizontal" className="" />
-            {Object.keys(PORTFOLIO).map((projectType) => (
+            {PROJECT_TYPES.map((projectType) => (
               <TabsContent
                 className="m-0 flex w-max "
                 key={projectType}
                 value={projectType}
               >
-                {(PORTFOLIO[projectType] as PortfolioItem[]).map(
-                  (portfolioItem, i) => (
-                    <PortfolioCard
-                      key={portfolioItem.title}
-                      portfolioItem={portfolioItem}
-                      isLastCard={i === PORTFOLIO[projectType].length - 1}
-                    />
-                  ),
-                )}
+                {PORTFOLIO[projectType].map((portfolioItem, i) => (
+                  <PortfolioCard
+                    key={portfolioItem.title}
+                    portfolioItem={portfolioItem}
+                    isLastCard={i === PORTFOLIO[projectType].length - 1}
+                  />
+                ))}
               </TabsContent>
             ))}
           </ScrollArea>

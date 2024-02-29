@@ -21,6 +21,8 @@ const PROJECT_TYPES = {
   SPA: "Single Page Application (SPA)",
 } as const;
 
+export type ProjectType = (typeof PROJECT_TYPES)[keyof typeof PROJECT_TYPES];
+
 export type PortfolioItem = {
   title: string;
   description: string;
@@ -30,7 +32,7 @@ export type PortfolioItem = {
 };
 
 type Portfolios = {
-  [key in (typeof PROJECT_TYPES)[keyof typeof PROJECT_TYPES]]: PortfolioItem[];
+  [key in ProjectType]: PortfolioItem[];
 };
 
 let PORTFOLIO: Portfolios = {
